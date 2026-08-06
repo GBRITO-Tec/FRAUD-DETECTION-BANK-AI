@@ -111,6 +111,68 @@ pip install -r requirements.txt
 # Processar os dados brutos (Engenharia de Dados)
 python src/process_data.py
 
+
+
+
+## 🛠️ Tecnologias, Ferramentas e Metodologias Utilizadas
+
+O projeto foi construído de forma modular, cobrindo o ciclo completo de vida de um produto de dados (Data & Machine Learning Lifecycle), desde a estruturação inicial até a automação em nuvem.
+
+---
+
+### 📂 Parte 1: Estrutura do Repositório e Arquivos Iniciais
+Nesta etapa inicial, foi definida a arquitetura de diretórios e a padronização das dependências do ambiente de desenvolvimento.
+
+- **Python 3.10+:** Linguagem base de todo o ecossistema do projeto.
+- **Git & GitHub:** Controle de versão distribuído para rastreamento de alterações e hospedagem do código fonte.
+- **Ambientes Virtuais (`venv` / `pip`):** Isolamento de dependências e gerenciamento de pacotes via `requirements.txt`.
+- **Estruturação Padrão de MLOps:** Organização do repositório separando código-fonte (`src/`), dados (`data/`), testes (`tests/`), modelos (`models/`), relatórios (`reports/`), documentação (`docs/`) e APIs (`api/`).
+
+---
+
+### 🧹 Parte 2: Processamento e Engenharia de Dados (`src/process_data.py`)
+Focada na ingestão, limpeza, tratamento e preparação dos dados para modelagem.
+
+- **Pandas:** Manipulação de DataFrames, limpeza de valores nulos, filtragem e engenharia de atributos (*feature engineering*).
+- **NumPy:** Vetorização e operações matemáticas de alta performance.
+- **Camadas de Dados:**
+  - **`data/raw/`:** Armazenamento dos dados brutos originais.
+  - **`data/processed/`:** Armazenamento dos dados limpos, transformados e prontos para alimentar os modelos.
+
+---
+
+### 🤖 Parte 3: Treinamento e Avaliação de Modelos (`src/train.py`)
+Etapa responsável pela modelagem preditiva, validação cruzada e persistência dos artefatos.
+
+- **Scikit-Learn:** 
+  - Divisão da base em treino e teste (`train_test_split`).
+  - Algoritmo de Aprendizado de Máquina (ex: `RandomForestClassifier`).
+  - Métricas de avaliação (`accuracy_score`, `classification_report`, matriz de confusão).
+- **Joblib / Pickle:** Serialização do modelo treinado para exportação no formato `.pkl` na pasta `models/`.
+
+---
+
+### 🌐 Parte 4: API Backend e Dashboard Interativo
+Disponibilização do modelo para consumo externo via serviços web e interfaces visuais.
+
+- **FastAPI:** Framework web assíncrono de alta performance para criação da API REST que disponibiliza o endpoint `/predict`.
+- **Uvicorn:** Servidor ASGI leve para rodar a aplicação FastAPI.
+- **Pydantic:** Validação automática de tipos e formatos dos dados de entrada HTTP.
+- **Streamlit:** Framework para construção rápida do dashboard interativo (`dashboard/app.py`), permitindo a visualização da base de dados e requisições de predição em tempo real.
+- **Requests:** Biblioteca HTTP para conectar o dashboard Streamlit à API REST.
+
+---
+
+### 🧪 Parte 5: Testes, Documentação, Docker e CI/CD
+Garantia de qualidade de código, empacotamento em containers e automação de entrega contínua.
+
+- **Pytest:** Framework de testes unitários e de integração para validar a API (`tests/test_api.py`) e funções do pipeline.
+- **HTTPX / TestClient:** Simulação de requisições HTTP para testes dos endpoints sem necessidade de subir o servidor localmente.
+- **Docker & Docker Compose:** Containerização de toda a aplicação (`Dockerfile`, `Dockerfile.dashboard` e `docker-compose.yml`), garantindo a execução isolada e portátil de serviços (API e Dashboard).
+- **GitHub Actions (`.github/workflows/ci.yml`):** Esteira de CI/CD para automação de testes unitários a cada `push` ou `pull request` realizado no repositório.
+- **Markdown (README.md):** Documentação técnica completa detalhando os pré-requisitos, instruções de instalação e guias de execução local e via Docker.
+-
+
 # Treinar e salvar o modelo de Machine Learning
 python src/train.py
 
